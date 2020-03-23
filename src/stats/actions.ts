@@ -100,8 +100,7 @@ function handleActionCompute(state: PlayerActionState, indices: PlayerIndexedTyp
       return;
     }
 
-    // FIXME: ActionsCountsType should be a map of actions -> number, instead of accessing the field via string
-    (state.playerCounts as any)[field] += 1;
+    state.playerCounts = _.mapValues(state.playerCounts, (value, key) => key === field ? value + 1 : value);
   };
 
   // Manage animation state
